@@ -75,5 +75,4 @@ DerivedDataCache/*
 
 # Ignore the following files in the root directory, but not in subdirectories
 /Content/Mega_Survival_Tools/*
-/Content/Audio/*
 /Content/ThirdParty/*
