@@ -75,7 +75,6 @@ DerivedDataCache/*
 
 # Ignore the following files in the root directory, but not in subdirectories
 /Content/Mega_Survival_Tools/*
-/Content/DreamscapeSeries/*
 /Content/KayKit/*
 /Content/Particles_Wind_Control_System/*
 /Content/sA_PickupSet_1/*
