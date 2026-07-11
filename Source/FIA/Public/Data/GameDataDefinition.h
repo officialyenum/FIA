@@ -1,10 +1,20 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Chukwuyenum Opone Copyright 2026
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "GameDataDefinition.generated.h"
+
+UENUM(BlueprintType)
+enum class EGameFlowState : uint8
+{
+	CharacterSelect,
+	Countdown,
+	Adventure,
+	Quiz,
+	EndGame
+};
 
 USTRUCT(BlueprintType)
 struct FPlayerData
@@ -73,15 +83,27 @@ class FIA_API UGameDataDefinition : public UDataAsset
 public:
 	FGameData& GetGameData() { return GameData; }
 	
+	UFUNCTION(BlueprintCallable)
+	void Reset();
+	UFUNCTION(BlueprintCallable)
 	void SetGameSessionID(const FName GameID);
+	UFUNCTION(BlueprintCallable)
 	void SetPlayerName(const int32 PlayerIndex, const FName PlayerName);
+	UFUNCTION(BlueprintCallable)
 	void AddPlayerScore(const int32 PlayerIndex, const int32 Score);
+	UFUNCTION(BlueprintCallable)
 	void AddChestOpened(const int32 PlayerIndex, const int32 Score);
+	UFUNCTION(BlueprintCallable)
 	void AddQuizAnswered(const int32 PlayerIndex, const int32 Score);
+	UFUNCTION(BlueprintCallable)
 	void AddQuizMissed(const int32 PlayerIndex, const int32 Score);
+	UFUNCTION(BlueprintCallable)
 	int32 GetPlayerScore(const int32 PlayerIndex);
+	UFUNCTION(BlueprintCallable)
 	int32 GetChestOpened(const int32 PlayerIndex);
+	UFUNCTION(BlueprintCallable)
 	int32 GetQuizAnswered(const int32 PlayerIndex);
+	UFUNCTION(BlueprintCallable)
 	int32 GetQuizMissed(const int32 PlayerIndex);
 private:
 	FGameData GameData;

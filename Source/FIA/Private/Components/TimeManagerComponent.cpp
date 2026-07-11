@@ -20,7 +20,7 @@ void UTimeManagerComponent::StartCountdown(const float DurationSeconds, const fl
 	bPaused = false;
 	SetComponentTickEnabled(true);
 
-	OnTimeTick.Broadcast(TimeRemaining); // fire immediately so UI shows the starting value
+	OnTimeTick.Broadcast(TimerType, TimeRemaining); // fire immediately so UI shows the starting value
 }
 
 void UTimeManagerComponent::StopTimer()
@@ -45,13 +45,13 @@ void UTimeManagerComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	if (AccumulatedTime >= TickInterval)
 	{
 		AccumulatedTime = 0.f;
-		OnTimeTick.Broadcast(TimeRemaining);
+		OnTimeTick.Broadcast(TimerType, TimeRemaining);
 	}
 
 	if (TimeRemaining <= 0.f)
 	{
 		StopTimer();
-		OnTimeExpired.Broadcast();
+		OnTimeExpired.Broadcast(TimerType);
 	}
 }
 

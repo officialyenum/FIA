@@ -1,8 +1,23 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Chukwuyenum Opone Copyright 2026
 
 
 #include "Data/GameDataDefinition.h"
 
+
+void UGameDataDefinition::Reset()
+{
+	// Reset Player One
+	GetGameData().PlayerOne.Score = 0;
+	GetGameData().PlayerOne.ChestOpened = 0;
+	GetGameData().PlayerOne.QuizAnswered = 0;
+	GetGameData().PlayerOne.QuizMissed = 0;
+	
+	// Reset Player Two
+	GetGameData().PlayerTwo.Score = 0;
+	GetGameData().PlayerTwo.ChestOpened = 0;
+	GetGameData().PlayerTwo.QuizAnswered = 0;
+	GetGameData().PlayerTwo.QuizMissed = 0;
+}
 
 void UGameDataDefinition::SetGameSessionID(const FName GameID)
 {

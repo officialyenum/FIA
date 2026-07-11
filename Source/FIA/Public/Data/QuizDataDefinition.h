@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+﻿// Chukwuyenum Opone Copyright 2026
 
 #pragma once
 
@@ -6,7 +6,15 @@
 #include "Engine/DataAsset.h"
 #include "QuizDataDefinition.generated.h"
 
-enum class EQuizAnswer : uint8;
+UENUM(BlueprintType)
+enum class EQuizAnswer : uint8
+{
+	None,
+	OptionA,
+	OptionB,
+	OptionX,
+	OptionY
+};
 
 USTRUCT(BlueprintType)
 struct FQuizData : public FTableRowBase

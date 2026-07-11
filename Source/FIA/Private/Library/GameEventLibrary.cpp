@@ -1,5 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
-
+﻿// Chukwuyenum Opone Copyright 2026
 
 #include "Library/GameEventLibrary.h"
 
@@ -58,6 +57,34 @@ void UGameEventLibrary::NotifyPlayerScoreUpdate(const UObject* WorldContextObjec
 	if (GetEventManagerSubsystem(WorldContextObject))
 	{
 		GetEventManagerSubsystem(WorldContextObject)->OnPlayerScoreUpdate.Broadcast(PlayerId, NewScore);
+	}
+}
+
+void UGameEventLibrary::NotifyGameStateChanged(const UObject* WorldContextObject, const EGameFlowState NewState)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnGameStateChanged.Broadcast(NewState);
+	}
+}
+
+void UGameEventLibrary::NotifyQuizResultsBroadcast(const UObject* WorldContextObject,
+	const TArray<EQuizAnswer>& Results)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnQuizResultsBroadcast.Broadcast(Results);
+	}
+}
+
+void UGameEventLibrary::NotifyGameEnded(const UObject* WorldContextObject, const int32 PlayerId)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnGameEnded.Broadcast(PlayerId);
 	}
 }
 
