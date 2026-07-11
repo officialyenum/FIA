@@ -13,15 +13,16 @@ UGameSetupComponent::UGameSetupComponent()
 	PrimaryComponentTick.bCanEverTick = false; // event-driven, no tick needed
 }
 
-void UGameSetupComponent::RegisterDefaultPlayer(APlayerController* FirstController)
+void UGameSetupComponent::RegisterDefaultPlayer(int32 PlayerIndex)
 {
-	if (!FirstController || RegisteredPlayers.Contains(FirstController)) return;
+	if (RegisteredPlayers.Contains(PlayerIndex)) return;
 
-	RegisteredPlayers.Add(FirstController);
-	OnPlayerJoined.Broadcast(FirstController);
+	RegisteredPlayers.Add(PlayerIndex);
+	APlayerController* PC = UGameplayStatics::GetPlayerController(GetOwner(), PlayerIndex);
+	OnPlayerJoined.Broadcast(PC);
 }
 
-bool UGameSetupComponent::TryJoinLocalPlayer(int32 ControllerId)
+bool UGameSetupComponent::TryJoinLocalPlayer(const int32 ControllerId)
 {
 	if (HasReachedMaxPlayers()) return false;
 
@@ -41,7 +42,7 @@ bool UGameSetupComponent::TryJoinLocalPlayer(int32 ControllerId)
 
     if (APlayerController* NewPC = NewLocalPlayer->PlayerController)
     {
-        RegisteredPlayers.AddUnique(NewPC);
+        RegisteredPlayers.AddUnique(ControllerId);
         OnPlayerJoined.Broadcast(NewPC);
     }
 

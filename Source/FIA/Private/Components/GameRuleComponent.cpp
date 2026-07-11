@@ -5,6 +5,7 @@
 
 #include "Components/TimeManagerComponent.h"
 #include "Data/QuizDataDefinition.h"
+#include "FIA/FIA.h"
 #include "Kismet/GameplayStatics.h"
 #include "Library/GameEventLibrary.h"
 
@@ -15,28 +16,28 @@ UGameRuleComponent::UGameRuleComponent()
 	PrimaryComponentTick.bCanEverTick = false; // timers do the ticking, not this component
 }
 
+void UGameRuleComponent::Initialize(UTimeManagerComponent* InCountdownTimer, UTimeManagerComponent* InAdventureTimer,
+	UTimeManagerComponent* InQuizTimer)
+{
+	if (bInitialized) return; // guard against double-binding if called more than once
+
+	CountdownTimer = InCountdownTimer;
+	AdventureTimer = InAdventureTimer;
+	QuizTimer = InQuizTimer;
+
+	check(CountdownTimer && AdventureTimer && QuizTimer);
+
+	CountdownTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleCountdownExpired);
+	AdventureTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleAdventureExpired);
+	QuizTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleQuizExpired);
+
+	bInitialized = true;
+}
+
 
 void UGameRuleComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	AActor* Owner = GetOwner();
-	check(Owner);
-
-	// Create the three timers dynamically as subcomponents of the owning GameMode
-	CountdownTimer = NewObject<UTimeManagerComponent>(Owner);
-	CountdownTimer->RegisterComponent();
-	CountdownTimer->SetTimerType(ETimerType::Countdown);
-	CountdownTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleCountdownExpired);
-
-	AdventureTimer = NewObject<UTimeManagerComponent>(Owner);
-	AdventureTimer->RegisterComponent();
-	AdventureTimer->SetTimerType(ETimerType::Adventure);
-	AdventureTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleAdventureExpired);
-
-	QuizTimer = NewObject<UTimeManagerComponent>(Owner);
-	QuizTimer->RegisterComponent();
-	QuizTimer->SetTimerType(ETimerType::Quiz);
-	QuizTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleQuizExpired);
 }
 
 void UGameRuleComponent::StartCountdown()
@@ -71,13 +72,15 @@ void UGameRuleComponent::SubmitQuizAnswer(const int32 PlayerIndex, const EQuizAn
 	}
 }
 
-void UGameRuleComponent::AddScore(const int32 PlayerIndex, const int32 Points)
+void UGameRuleComponent::AddGameScore(const int32 PlayerIndex, const int32 Points)
 {
 	if (!PlayerIndex || !PlayerScores.Contains(PlayerIndex)) return;
 
 	int32& Score = PlayerScores[PlayerIndex];
 	Score += Points;
-	UGameEventLibrary::NotifyPlayerScoreUpdate(GetOwner(), PlayerIndex, Score);
+	FIA_LOG_F("AddScore: Player %i score updated", Score);
+	OnScoreChanged.Broadcast(PlayerIndex, Score);
+	// UGameEventLibrary::NotifyPlayerScoreUpdate(GetOwner(), PlayerIndex, Score);
 
 	if (Score >= WinScore)
 	{
@@ -108,14 +111,14 @@ void UGameRuleComponent::InitializePlayers(const TArray<int32>& InPlayers)
 	for (int32 PlayerIndex : Players)
 	{
 		PlayerScores.Add(PlayerIndex, 0);
-		UGameEventLibrary::NotifyPlayerScoreUpdate(GetOwner(), PlayerIndex, 0);
+		OnScoreChanged.Broadcast(PlayerIndex, 0);
 	}
 }
 
 void UGameRuleComponent::SetState(const EGameFlowState NewState)
 {
 	CurrentState = NewState;
-	UGameEventLibrary::NotifyGameStateChanged(GetOwner(), NewState);
+	OnGameStateChanged.Broadcast(NewState);
 }
 
 void UGameRuleComponent::EnterAdventure()
@@ -155,7 +158,8 @@ void UGameRuleComponent::FinishQuiz()
 		EQuizAnswer Answer = Pair.Value;
 		Results.Add(Answer);
 	}
-	UGameEventLibrary::NotifyQuizResultsBroadcast(GetOwner(), Results);
+	OnQuizResultsBroadcast.Broadcast(Results);
+	// UGameEventLibrary::NotifyQuizResultsBroadcast(GetOwner(), Results);
 	// Scoring for correct answers is left to quiz-check logic (Blueprint or
 	// another component), which should call AddScore() per correct answer.
 
@@ -168,7 +172,8 @@ void UGameRuleComponent::EndGame(int32 Winner)
 	QuizTimer->StopTimer();
 
 	SetState(EGameFlowState::EndGame);
-	UGameEventLibrary::NotifyGameEnded(GetOwner(), Winner);
+	OnGameEnded.Broadcast(Winner);
+	// UGameEventLibrary::NotifyGameEnded(GetOwner(), Winner);
 }
 
 void UGameRuleComponent::HandleCountdownExpired(ETimerType InTimerType)

@@ -37,23 +37,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Event Library", meta=(WorldContext="WorldContextObject"))
 	static void NotifyPlayerAnsweredQuiz(const UObject* WorldContextObject, const int32 PlayerId, const EQuizAnswer Answer);
 	
-	// Notify Player New Score so any object listening can update
-	UFUNCTION(BlueprintCallable, Category = "Event Library", meta=(WorldContext="WorldContextObject"))
-	static void NotifyPlayerScoreUpdate(const UObject* WorldContextObject, const int32 PlayerId,  int32 NewScore);
-	
-	
-	// Notify Game State Changed
-	UFUNCTION(BlueprintCallable, Category = "Event Library", meta=(WorldContext="WorldContextObject"))
-	static void NotifyGameStateChanged(const UObject* WorldContextObject, const EGameFlowState NewState);
-	
-	// Notify Quiz Result
-	UFUNCTION(BlueprintCallable, Category = "Event Library", meta=(WorldContext="WorldContextObject"))
-	static void NotifyQuizResultsBroadcast(const UObject* WorldContextObject, const TArray<EQuizAnswer>& Results);
-	
-	// Notify that Game Has Ended
-	UFUNCTION(BlueprintCallable, Category = "Event Library", meta=(WorldContext="WorldContextObject"))
-	static void NotifyGameEnded(const UObject* WorldContextObject, const int32 PlayerId);
-	
 	// Notify Warm Up Count Down to UI Listening
 	UFUNCTION(BlueprintCallable, Category = "Event Library", meta=(WorldContext="WorldContextObject"))
 	static void NotifyWarmUpMessage(const UObject* WorldContextObject, const int32 PlayerId, FText WarmUpText);

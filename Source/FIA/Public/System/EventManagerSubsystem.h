@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Subsystems/GameInstanceSubsystem.h"
+#include "Subsystems/WorldSubsystem.h"
 #include "EventManagerSubsystem.generated.h"
 
 enum class EQuizAnswer : uint8;
@@ -13,11 +13,6 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerOpenedChest, int32, PlayerI
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerMissed, int32, PlayerId);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerAnswered, int32, PlayerId);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlayerAnsweredQuiz, int32, PlayerId, EQuizAnswer, Answer);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlayerScoreUpdate, int32, PlayerId, int32, NewScore);
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameStateChanged, EGameFlowState, NewState);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnQuizResultsBroadcast, const TArray<EQuizAnswer>&, Results);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameEnded, int32, PlayerId);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnWarmUpMessage, FText, WarmUpText);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAnnouncementMessage, FText, AnnouncementText);
@@ -25,7 +20,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAnnouncementMessage, FText, Annou
  * 
  */
 UCLASS()
-class FIA_API UEventManagerSubsystem : public UGameInstanceSubsystem
+class FIA_API UEventManagerSubsystem : public UWorldSubsystem
 {
 	GENERATED_BODY()
 	
@@ -45,22 +40,6 @@ public:
 	// Notify Game Rules when player answers question
 	UPROPERTY(BlueprintAssignable, Category = "Event")
 	FOnPlayerAnsweredQuiz OnPlayerAnsweredQuiz;
-	
-	// Update Player new Score in UI
-	UPROPERTY(BlueprintAssignable, Category = "Event")
-	FOnPlayerScoreUpdate OnPlayerScoreUpdate;
-	
-	// Update Game State Changed
-	UPROPERTY(BlueprintAssignable, Category = "Event")
-	FOnGameStateChanged OnGameStateChanged;
-	
-	// Broadcast Quiz Results to UI
-	UPROPERTY(BlueprintAssignable, Category = "Event")
-	FOnQuizResultsBroadcast OnQuizResultsBroadcast;
-	
-	// Update that Game Has Ended
-	UPROPERTY(BlueprintAssignable, Category = "Event")
-	FOnGameEnded OnGameEnded;
 	
 	// Broadcast Warmup countdown to UI
 	UPROPERTY(BlueprintAssignable, Category = "Event")

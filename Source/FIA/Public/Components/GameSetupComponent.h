@@ -22,7 +22,7 @@ public:
 	int32 MaxPlayers = 4;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Setup")
-	TArray<APlayerController*> RegisteredPlayers;
+	TArray<int32> RegisteredPlayers;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAllPlayersReady OnAllPlayersReady;
@@ -32,7 +32,7 @@ public:
 	
 	// Call once, e.g. from GameMode::BeginPlay, to register the default Player 1
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void RegisterDefaultPlayer(APlayerController* FirstController);
+	void RegisterDefaultPlayer(int32 PlayerIndex);
 
 	// Call when a new controller presses "Start" during character select
 	UFUNCTION(BlueprintCallable, Category = "Setup")

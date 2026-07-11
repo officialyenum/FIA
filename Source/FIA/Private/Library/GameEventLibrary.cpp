@@ -8,9 +8,9 @@
 UEventManagerSubsystem* UGameEventLibrary::GetEventManagerSubsystem(const UObject* WorldContextObject)
 {
 	if (!WorldContextObject) return nullptr;
-	const UGameInstance* GI = UGameplayStatics::GetGameInstance(WorldContextObject);
-	if (!GI) return nullptr;
-	UEventManagerSubsystem* EventSubsystem = GI->GetSubsystem<UEventManagerSubsystem>();
+	const UWorld* World = WorldContextObject->GetWorld();
+	if (!World) return nullptr;
+	UEventManagerSubsystem* EventSubsystem = World->GetSubsystem<UEventManagerSubsystem>();
 	return EventSubsystem;
 }
 
@@ -48,43 +48,6 @@ void UGameEventLibrary::NotifyPlayerAnsweredQuiz(const UObject* WorldContextObje
 	if (GetEventManagerSubsystem(WorldContextObject))
 	{
 		GetEventManagerSubsystem(WorldContextObject)->OnPlayerAnsweredQuiz.Broadcast(PlayerId, Answer);
-	}
-}
-
-void UGameEventLibrary::NotifyPlayerScoreUpdate(const UObject* WorldContextObject, const int32 PlayerId, const int32 NewScore)
-{
-	if (!WorldContextObject) return;
-	if (GetEventManagerSubsystem(WorldContextObject))
-	{
-		GetEventManagerSubsystem(WorldContextObject)->OnPlayerScoreUpdate.Broadcast(PlayerId, NewScore);
-	}
-}
-
-void UGameEventLibrary::NotifyGameStateChanged(const UObject* WorldContextObject, const EGameFlowState NewState)
-{
-	if (!WorldContextObject) return;
-	if (GetEventManagerSubsystem(WorldContextObject))
-	{
-		GetEventManagerSubsystem(WorldContextObject)->OnGameStateChanged.Broadcast(NewState);
-	}
-}
-
-void UGameEventLibrary::NotifyQuizResultsBroadcast(const UObject* WorldContextObject,
-	const TArray<EQuizAnswer>& Results)
-{
-	if (!WorldContextObject) return;
-	if (GetEventManagerSubsystem(WorldContextObject))
-	{
-		GetEventManagerSubsystem(WorldContextObject)->OnQuizResultsBroadcast.Broadcast(Results);
-	}
-}
-
-void UGameEventLibrary::NotifyGameEnded(const UObject* WorldContextObject, const int32 PlayerId)
-{
-	if (!WorldContextObject) return;
-	if (GetEventManagerSubsystem(WorldContextObject))
-	{
-		GetEventManagerSubsystem(WorldContextObject)->OnGameEnded.Broadcast(PlayerId);
 	}
 }
 

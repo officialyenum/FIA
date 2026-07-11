@@ -15,6 +15,11 @@ class UTimeManagerComponent;
 struct FQuizAnswerResult;
 enum class EGameFlowState : uint8;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameStateChanged, EGameFlowState, NewState);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnScoreChanged, int32, Player, int32, NewScore);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnQuizResultsBroadcast, const TArray<EQuizAnswer>&, Results);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameEnded, int32, Winner);
+
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class FIA_API UGameRuleComponent : public UActorComponent
 {
@@ -22,6 +27,11 @@ class FIA_API UGameRuleComponent : public UActorComponent
 
 public:
 	UGameRuleComponent();
+	
+	UFUNCTION(BlueprintCallable, Category = "Rules")
+	void Initialize(UTimeManagerComponent* InCountdownTimer,
+					 UTimeManagerComponent* InAdventureTimer,
+					 UTimeManagerComponent* InQuizTimer);
 
 	UPROPERTY(EditAnywhere, Category = "Rules")
 	float CountdownDuration = 3.f;
@@ -36,8 +46,13 @@ public:
 	int32 WinScore = 20;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Rules")
-	EGameFlowState CurrentState = EGameFlowState::CharacterSelect;
+	EGameFlowState CurrentState = EGameFlowState::Adventure;
 	virtual void BeginPlay() override;
+	
+	UPROPERTY(BlueprintAssignable) FOnGameStateChanged OnGameStateChanged;
+	UPROPERTY(BlueprintAssignable) FOnScoreChanged OnScoreChanged;
+	UPROPERTY(BlueprintAssignable) FOnQuizResultsBroadcast OnQuizResultsBroadcast;
+	UPROPERTY(BlueprintAssignable) FOnGameEnded OnGameEnded;
 
 	// --- Flow control, call these from GameSetupComponent / gameplay events ---
 	UFUNCTION(BlueprintCallable, Category = "Rules")
@@ -50,7 +65,7 @@ public:
 	void SubmitQuizAnswer(int32 PlayerIndex, const EQuizAnswer Answer);
 
 	UFUNCTION(BlueprintCallable, Category = "Rules")
-	void AddScore(int32 PlayerIndex, int32 Points);
+	void AddGameScore(int32 PlayerIndex, int32 Points);
 
 	UFUNCTION(BlueprintCallable, Category = "Rules")
 	void RestartGame() const;
@@ -70,6 +85,7 @@ private:
 	UPROPERTY() UTimeManagerComponent* AdventureTimer;
 	UPROPERTY() UTimeManagerComponent* QuizTimer;
 
+	bool bInitialized = false;
 	UPROPERTY() TArray<int32> Players;
 	TMap<int32, int32> PlayerScores;
 	TSet<int32> AnsweredThisQuiz;
