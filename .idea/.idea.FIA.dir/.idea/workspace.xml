@@ -14,12 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Public/Components/TimeManagerComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FIA.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/FIA.uproject" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/GameSetupComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/FIA/Public/Components/GameSetupComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/HUD/MainMenuHudManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/HUD/MainMenuHudManager.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +35,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Private/GameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Components/GameSetupComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Components/GameSetupComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -44,92 +48,92 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000000359306" />
-      <entry key="S2" value="1.0024918184884337" />
-      <entry key="S5" value="1.118597946661002" />
-      <entry key="S10" value="1.577419327010129" />
-      <entry key="S30" value="3.152107007827631" />
-      <entry key="S60" value="4.246071858915584" />
-      <entry key="M2" value="5.334105755931633" />
-      <entry key="M5" value="6.8370619973612685" />
-      <entry key="M10" value="7.732357535081065" />
-      <entry key="M15" value="8.105728380796732" />
-      <entry key="M30" value="8.525964429505306" />
-      <entry key="H1" value="8.75578461557965" />
-      <entry key="H2" value="8.876030116003832" />
-      <entry key="H4" value="8.937541416719283" />
-      <entry key="D1" value="8.989523753999823" />
-      <entry key="W1" value="8.998501756105535" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.000000071054438" />
+      <entry key="S5" value="1.0013824112851168" />
+      <entry key="S10" value="1.0372515549465524" />
+      <entry key="S30" value="1.4025264384612868" />
+      <entry key="S60" value="2.093197046063427" />
+      <entry key="M2" value="3.804394084047594" />
+      <entry key="M5" value="7.817176053873973" />
+      <entry key="M10" value="10.88476815643336" />
+      <entry key="M15" value="12.29891411196313" />
+      <entry key="M30" value="13.983289914347054" />
+      <entry key="H1" value="14.94563436273843" />
+      <entry key="H2" value="15.460697193428535" />
+      <entry key="H4" value="15.72723740736673" />
+      <entry key="D1" value="15.95410037051121" />
+      <entry key="W1" value="15.993432060440561" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="MS100" value="3.5507792126585193E-165" />
+      <entry key="MS500" value="1.288441585984415E-33" />
+      <entry key="S2" value="5.991232637696834E-9" />
+      <entry key="S5" value="5.140629361244483E-4" />
+      <entry key="S10" value="0.022791688107394254" />
+      <entry key="S30" value="0.3533161038875774" />
+      <entry key="S60" value="0.9009006432475095" />
+      <entry key="M2" value="1.584756274259522" />
+      <entry key="M5" value="2.303883939036944" />
+      <entry key="M10" value="2.6252468324712246" />
+      <entry key="M15" value="2.743787319531199" />
+      <entry key="M30" value="2.868585603544512" />
+      <entry key="H1" value="2.9334425741708934" />
+      <entry key="H2" value="2.9665057544948485" />
+      <entry key="H4" value="2.9831986174106664" />
+      <entry key="D1" value="2.9971922012856362" />
+      <entry key="W1" value="2.999598700130928" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="5.267043331345853E-14" />
-      <entry key="MS500" value="0.00220959856024591" />
-      <entry key="S2" value="0.2168863286570422" />
-      <entry key="S5" value="0.582925071135813" />
-      <entry key="S10" value="1.1105370196804718" />
-      <entry key="S30" value="2.8126243849592076" />
-      <entry key="S60" value="4.017094808719505" />
-      <entry key="M2" value="5.1914177574565725" />
-      <entry key="M5" value="6.764930483454504" />
-      <entry key="M10" value="7.691854788464507" />
-      <entry key="M15" value="8.077495489218135" />
-      <entry key="M30" value="8.511155688096036" />
-      <entry key="H1" value="8.748191019197632" />
-      <entry key="H2" value="8.872183822907823" />
-      <entry key="H4" value="8.9356056115656" />
-      <entry key="D1" value="8.989199336943598" />
-      <entry key="W1" value="8.998455366823682" />
+      <entry key="MS100" value="3.199852023109959E-139" />
+      <entry key="MS500" value="2.000066447585666E-28" />
+      <entry key="S2" value="1.3003741905060964E-7" />
+      <entry key="S5" value="0.0026162009484916498" />
+      <entry key="S10" value="0.08346040353757274" />
+      <entry key="S30" value="1.0104410235921586" />
+      <entry key="S60" value="2.4363519363356025" />
+      <entry key="M2" value="4.9711010402201365" />
+      <entry key="M5" value="9.859966073781832" />
+      <entry key="M10" value="13.349255404428614" />
+      <entry key="M15" value="14.926831145183439" />
+      <entry key="M30" value="16.788938589911254" />
+      <entry key="H1" value="17.846216238466297" />
+      <entry key="H2" value="18.410404868215185" />
+      <entry key="H4" value="18.701942458989585" />
+      <entry key="D1" value="18.949863622207694" />
+      <entry key="W1" value="18.992826294846093" />
     </decayedShown>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="3GLVsKJnOUS0kt0IcOFwUaAOyxJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Uproject.FIA.executor": "Debug",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Uproject.FIA.executor&quot;: &quot;Debug&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="FIA" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -204,6 +208,14 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration default="true" type="Uproject" factoryName="rider.uproject">
+      <option name="DEFAULT_PROJECT_PATH" value="" />
+      <option name="PROJECT_FILE_PATH" value="" />
+      <option name="AUTO_SELECT_PRIORITY" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -213,6 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1783751045538</updated>
       <workItem from="1783751055552" duration="1628000" />
+      <workItem from="1783752871762" duration="2724000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-﻿// Chukwuyenum Opone.
+﻿// Chukwuyenum Opone Copyright 2026
 
 
 #include "FIA/Public/Components/TimeManagerComponent.h"
