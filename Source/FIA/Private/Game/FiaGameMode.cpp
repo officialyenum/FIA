@@ -2,3 +2,7 @@
 
 
 #include "FIA/Public/Game/FiaGameMode.h"
+
+AFiaGameMode::AFiaGameMode()
+{
+}
