@@ -22,17 +22,25 @@ AFiaGameMode::AFiaGameMode()
 void AFiaGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	if (!GameSetup || !GameRule) return;
+	GameSetup->OnAllPlayersReady.AddDynamic(this, &AFiaGameMode::HandleAllPlayersReady);
 	// All components already exist and have had their own BeginPlay called by this point,
 	// so wiring references here is safe - no ordering ambiguity.
 	GameRule->Initialize(CountdownTimer, AdventureTimer, QuizTimer);
 	//TODO: Remove later for testing use the handle players initialize players
 	TArray<int32> Players;
-	Players.Add(0);
-	Players.Add(1);
-	GameRule->InitializePlayers(Players);
 
+	GameSetup->SetMaxPlayers(GameSetup->GetMaxPlayers());
+	// Register default player
+	Players.Add(0);
 	GameSetup->RegisterDefaultPlayer(0);
-	GameSetup->OnAllPlayersReady.AddDynamic(this, &AFiaGameMode::HandleAllPlayersReady);
+	// register the rest
+	for (int i = 1; i < GameSetup->GetMaxPlayers(); ++i)
+	{
+		Players.Add(i);
+		GameSetup->TryJoinLocalPlayer(i);
+	}
+	GameRule->InitializePlayers(Players);
 }
 
 void AFiaGameMode::PostLogin(APlayerController* NewPlayer)
@@ -45,9 +53,4 @@ void AFiaGameMode::HandleAllPlayersReady()
 {
 	GameRule->InitializePlayers(GameSetup->RegisteredPlayers);
 	GameRule->StartCountdown();
-}
-
-void AFiaGameMode::AddGameScore(const int32 PlayerIndex, const int32 Points) const
-{
-	GameRule->AddGameScore(PlayerIndex, Points);
 }

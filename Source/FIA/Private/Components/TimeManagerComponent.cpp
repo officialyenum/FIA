@@ -3,6 +3,8 @@
 
 #include "FIA/Public/Components/TimeManagerComponent.h"
 
+#include "Library/GameEventLibrary.h"
+
 
 UTimeManagerComponent::UTimeManagerComponent()
 {
@@ -45,6 +47,18 @@ void UTimeManagerComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	if (AccumulatedTime >= TickInterval)
 	{
 		AccumulatedTime = 0.f;
+		switch (TimerType)
+		{
+		case ETimerType::Countdown:
+			UGameEventLibrary::NotifyCountDownTimer(GetOwner(), GetTimeTextFormat(TimeRemaining));
+			break;
+		case ETimerType::Adventure:
+			UGameEventLibrary::NotifyAdventureTimer(GetOwner(), GetTimeTextFormat(TimeRemaining));
+			break;
+		case ETimerType::Quiz:
+			UGameEventLibrary::NotifyQuizTimer(GetOwner(), GetTimeTextFormat(TimeRemaining));
+			break;
+		}
 		OnTimeTick.Broadcast(TimerType, TimeRemaining);
 	}
 
@@ -53,5 +67,23 @@ void UTimeManagerComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		StopTimer();
 		OnTimeExpired.Broadcast(TimerType);
 	}
+}
+
+FText UTimeManagerComponent::GetTimeTextFormat(const float TimeInSeconds)
+{
+	const int32 TotalSeconds = FMath::Max(0, FMath::FloorToInt(TimeInSeconds));
+
+	const int32 Minutes = TotalSeconds / 60;
+	const int32 Seconds = TotalSeconds % 60;
+
+	return FText::Format(
+		FText::FromString(TEXT("{0}:{1}")),
+		FText::AsNumber(Minutes),
+		FText::AsNumber(
+			Seconds,
+			&FNumberFormattingOptions()
+				.SetMinimumIntegralDigits(2)
+				.SetMaximumIntegralDigits(2))
+	);
 }
 

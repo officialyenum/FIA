@@ -17,9 +17,19 @@ UGameRuleComponent::UGameRuleComponent()
 }
 
 void UGameRuleComponent::Initialize(UTimeManagerComponent* InCountdownTimer, UTimeManagerComponent* InAdventureTimer,
-	UTimeManagerComponent* InQuizTimer)
+UTimeManagerComponent* InQuizTimer)
 {
 	if (bInitialized) return; // guard against double-binding if called more than once
+	if (GetGameDataDefinition() == nullptr)
+	{
+		FIA_ERROR("Ensure Game Data Definition is set in Game Mode -> Game Rule Component");
+		return;
+	}
+	if (GetQuizDataDefinition() == nullptr)
+	{
+		FIA_ERROR("Ensure Quiz Data Definition is set in Game Mode -> Game Rule Component");
+		return;
+	}
 
 	CountdownTimer = InCountdownTimer;
 	AdventureTimer = InAdventureTimer;
@@ -46,15 +56,19 @@ void UGameRuleComponent::StartCountdown()
 	CountdownTimer->StartCountdown(CountdownDuration, 1.0f);
 }
 
-void UGameRuleComponent::OnChestFound(int32 FinderPlayer)
+void UGameRuleComponent::OnChestFound(const int32 FinderPlayerIndex)
 {
 	if (CurrentState != EGameFlowState::Adventure) return;
 
 	AdventureTimer->PauseTimer(); // freeze the 2-minute clock during the quiz
 	AnsweredThisQuiz.Empty();
+	ResetChestTracker();
 	PendingAnswers.Empty();
 
+	OpenedChestTracker[FinderPlayerIndex] = true;
+	QuizDataDefinition->GetRandomQuiz(ActiveQuiz);
 	SetState(EGameFlowState::Quiz);
+	UGameEventLibrary::NotifyQuizLoaded(GetOwner(), ActiveQuiz);
 	QuizTimer->StartCountdown(QuizDuration, 1.0f);
 }
 
@@ -74,17 +88,22 @@ void UGameRuleComponent::SubmitQuizAnswer(const int32 PlayerIndex, const EQuizAn
 
 void UGameRuleComponent::AddGameScore(const int32 PlayerIndex, const int32 Points)
 {
-	if (!PlayerIndex || !PlayerScores.Contains(PlayerIndex)) return;
-
-	int32& Score = PlayerScores[PlayerIndex];
-	Score += Points;
+	GetGameDataDefinition()->AddPlayerScore(PlayerIndex, Points, OpenedChestTracker[PlayerIndex]);
+	const int32 Score = GetGameDataDefinition()->GetPlayerScore(PlayerIndex);
 	FIA_LOG_F("AddScore: Player %i score updated", Score);
-	OnScoreChanged.Broadcast(PlayerIndex, Score);
-	// UGameEventLibrary::NotifyPlayerScoreUpdate(GetOwner(), PlayerIndex, Score);
+	UGameEventLibrary::NotifyScoreChanged(GetOwner(), PlayerIndex, Score);
 
 	if (Score >= WinScore)
 	{
 		EndGame(PlayerIndex);
+	}
+}
+
+void UGameRuleComponent::ResetChestTracker()
+{
+	for (const int32 PlayerIndex : Players)
+	{
+		OpenedChestTracker[PlayerIndex] = false;
 	}
 }
 
@@ -107,18 +126,26 @@ void UGameRuleComponent::ReturnToMainMenu(const FString& MainMenuMapName) const
 void UGameRuleComponent::InitializePlayers(const TArray<int32>& InPlayers)
 {
 	Players = InPlayers;
-	PlayerScores.Empty();
-	for (int32 PlayerIndex : Players)
+	if (GetGameDataDefinition() == nullptr)
 	{
-		PlayerScores.Add(PlayerIndex, 0);
-		OnScoreChanged.Broadcast(PlayerIndex, 0);
+		FIA_ERROR_F("GameRuleComponent::InitializePlayers: GameDataDefinition is nullptr");
+		return;
+	}
+	GameDataDefinition->Initialize();
+	for (const int32 PlayerIndex : Players)
+	{
+		GameDataDefinition->SetPlayerName(PlayerIndex, FName("Player %i", PlayerIndex + 1));
+		GameDataDefinition->AddPlayerScore(PlayerIndex, 0, false);
+		GameDataDefinition->AddChestOpened(PlayerIndex, 0);
+		GameDataDefinition->AddQuizMissed(PlayerIndex, 0);
+		UGameEventLibrary::NotifyScoreChanged(GetOwner(), PlayerIndex, 0);
 	}
 }
 
 void UGameRuleComponent::SetState(const EGameFlowState NewState)
 {
 	CurrentState = NewState;
-	OnGameStateChanged.Broadcast(NewState);
+	UGameEventLibrary::NotifyGameStateChanged(GetOwner(), NewState);
 }
 
 void UGameRuleComponent::EnterAdventure()
@@ -155,25 +182,33 @@ void UGameRuleComponent::FinishQuiz()
 	Results.Reserve(PendingAnswers.Num());
 	for (const auto& Pair : PendingAnswers)
 	{
-		EQuizAnswer Answer = Pair.Value;
-		Results.Add(Answer);
+		// Quiz Check Logic
+		if (ActiveQuiz.CorrectAnswer == Pair.Value)
+		{
+			AddGameScore(Pair.Key, 1);
+			UGameEventLibrary::NotifyPlayerAnswered(GetOwner(), Pair.Key);
+		}
+		else
+		{
+			AddGameScore(Pair.Key, 0);
+			UGameEventLibrary::NotifyPlayerMissed(GetOwner(), Pair.Key);
+		}
+		Results[Pair.Key] = Pair.Value;
 	}
-	OnQuizResultsBroadcast.Broadcast(Results);
-	// UGameEventLibrary::NotifyQuizResultsBroadcast(GetOwner(), Results);
-	// Scoring for correct answers is left to quiz-check logic (Blueprint or
-	// another component), which should call AddScore() per correct answer.
+	UGameEventLibrary::NotifyQuizResultsBroadcast(GetOwner(), Results);
 
 	EnterAdventure(); // resumes the paused adventure timer
 }
 
-void UGameRuleComponent::EndGame(int32 Winner)
+void UGameRuleComponent::EndGame(const int32 Winner)
 {
 	AdventureTimer->StopTimer();
 	QuizTimer->StopTimer();
 
 	SetState(EGameFlowState::EndGame);
-	OnGameEnded.Broadcast(Winner);
-	// UGameEventLibrary::NotifyGameEnded(GetOwner(), Winner);
+	UGameEventLibrary::NotifyGameResultBroadcast(GetOwner(),
+		GetGameDataDefinition()->GetAllPlayerScores(Players.Num()));
+	UGameEventLibrary::NotifyGameEnded(GetOwner(), Winner);
 }
 
 void UGameRuleComponent::HandleCountdownExpired(ETimerType InTimerType)
@@ -184,17 +219,9 @@ void UGameRuleComponent::HandleCountdownExpired(ETimerType InTimerType)
 void UGameRuleComponent::HandleAdventureExpired(ETimerType InTimerType)
 {
 	// Time ran out before anyone hit 20 points — end game with whoever has the highest score
-	int32 Winner = -1;
-	int32 BestScore = -1;
-	for (const auto& Pair : PlayerScores)
-	{
-		if (Pair.Value > BestScore)
-		{
-			BestScore = Pair.Value;
-			Winner = Pair.Key;
-		}
-	}
-	EndGame(Winner);
+	const FPlayerData BestPlayer = GetGameDataDefinition()->HandleBestScore(Players.Num());
+	//TODO: Implement Result Handler Here
+	EndGame(BestPlayer.PlayerIndex);
 }
 
 void UGameRuleComponent::HandleQuizExpired(ETimerType InTimerType)

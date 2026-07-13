@@ -39,31 +39,31 @@ public:
 	FName ID;
 
 	// Question Text
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	FText Question;
 	
 	// Question Option A
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	FText OptionA;
 	
 	// Question Option B
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	FText OptionB;
 	
 	// Question Option X
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	FText OptionX;
 	
 	// Question Option Y
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	FText OptionY;
 	
 	// Question CorrectAnswer
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	EQuizAnswer CorrectAnswer;
 	
 	// Question Hint
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Music")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Quiz Data")
 	FText Hint;
 };
 /**
@@ -73,4 +73,17 @@ UCLASS()
 class FIA_API UQuizDataDefinition : public UDataAsset
 {
 	GENERATED_BODY()
+	
+public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Quiz Data")
+	TObjectPtr<UDataTable> QuizBank;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Quiz Data")
+	TArray<FQuizData> QuizArray;
+	
+	UFUNCTION(BlueprintCallable)
+    void InitializeQuizData();
+	
+	UFUNCTION(BlueprintCallable)
+    bool GetRandomQuiz(FQuizData& OutQuiz);
 };

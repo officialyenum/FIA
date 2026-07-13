@@ -7,7 +7,7 @@
 #include "GameSetupComponent.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAllPlayersReady);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerJoined, APlayerController*, NewPlayer);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerJoined, int32, PlayerIndex);
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -39,11 +39,14 @@ public:
 	bool TryJoinLocalPlayer(int32 ControllerId);
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetMaxPlayers(const int32 NewMax) { MaxPlayers = FMath::Clamp(NewMax, 2, 4); }
+	FORCEINLINE void SetMaxPlayers(const int32 NewMax) { MaxPlayers = FMath::Clamp(NewMax, 2, 4); }
+	
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	FORCEINLINE int32 GetMaxPlayers() const { return MaxPlayers; }
 
 	UFUNCTION(BlueprintPure, Category = "Setup")
-	bool HasReachedMaxPlayers() const { return RegisteredPlayers.Num() >= MaxPlayers; }
+	FORCEINLINE bool HasReachedMaxPlayers() const { return RegisteredPlayers.Num() >= MaxPlayers; }
 
 	UFUNCTION(BlueprintPure, Category = "Setup")
-	int32 GetPlayerCount() const { return RegisteredPlayers.Num(); }
+	FORCEINLINE int32 GetRegisteredPlayerCount() const { return RegisteredPlayers.Num(); }
 };

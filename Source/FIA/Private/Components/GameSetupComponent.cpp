@@ -4,6 +4,7 @@
 #include "Components/GameSetupComponent.h"
 #include "Engine/World.h"
 #include "Engine/LocalPlayer.h"
+#include "FIA/FIA.h"
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -13,13 +14,12 @@ UGameSetupComponent::UGameSetupComponent()
 	PrimaryComponentTick.bCanEverTick = false; // event-driven, no tick needed
 }
 
-void UGameSetupComponent::RegisterDefaultPlayer(int32 PlayerIndex)
+void UGameSetupComponent::RegisterDefaultPlayer(const int32 PlayerIndex)
 {
 	if (RegisteredPlayers.Contains(PlayerIndex)) return;
 
 	RegisteredPlayers.Add(PlayerIndex);
-	APlayerController* PC = UGameplayStatics::GetPlayerController(GetOwner(), PlayerIndex);
-	OnPlayerJoined.Broadcast(PC);
+	OnPlayerJoined.Broadcast(PlayerIndex);
 }
 
 bool UGameSetupComponent::TryJoinLocalPlayer(const int32 ControllerId)
@@ -36,14 +36,14 @@ bool UGameSetupComponent::TryJoinLocalPlayer(const int32 ControllerId)
     const ULocalPlayer* NewLocalPlayer = GI->CreateLocalPlayer(ControllerId, Error, true);
     if (!NewLocalPlayer)
     {
-        UE_LOG(LogTemp, Warning, TEXT("GameSetup: failed to create local player - %s"), *Error);
+        FIA_ERROR_F("GameSetup: failed to create local player - %s", *Error);
         return false;
     }
 
     if (APlayerController* NewPC = NewLocalPlayer->PlayerController)
     {
         RegisteredPlayers.AddUnique(ControllerId);
-        OnPlayerJoined.Broadcast(NewPC);
+        OnPlayerJoined.Broadcast(ControllerId);
     }
 
     if (HasReachedMaxPlayers())

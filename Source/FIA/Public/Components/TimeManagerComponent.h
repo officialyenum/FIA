@@ -53,6 +53,9 @@ public:
 	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
+
+	UFUNCTION(BlueprintCallable, Category = "Timer")
+	FText GetTimeTextFormat(const float TimeInSeconds);
 private:
 	ETimerType TimerType = ETimerType::Countdown;
 	float TimeRemaining = 0.f;

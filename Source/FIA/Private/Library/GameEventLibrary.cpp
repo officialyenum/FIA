@@ -23,6 +23,15 @@ void UGameEventLibrary::NotifyPlayerChestOpened(const UObject* WorldContextObjec
 	}
 }
 
+void UGameEventLibrary::NotifyQuizLoaded(const UObject* WorldContextObject, const FQuizData& LoadedQuizData)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnQuizLoaded.Broadcast(LoadedQuizData);
+	}
+}
+
 void UGameEventLibrary::NotifyPlayerMissed(const UObject* WorldContextObject, const int32 PlayerId)
 {
 	if (!WorldContextObject) return;
@@ -51,6 +60,50 @@ void UGameEventLibrary::NotifyPlayerAnsweredQuiz(const UObject* WorldContextObje
 	}
 }
 
+void UGameEventLibrary::NotifyGameStateChanged(const UObject* WorldContextObject, EGameFlowState NewState)
+{
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnGameStateChanged.Broadcast(NewState);
+	}
+}
+
+void UGameEventLibrary::NotifyScoreChanged(const UObject* WorldContextObject, const int32 PlayerId, int32 NewScore)
+{
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnScoreChanged.Broadcast(PlayerId, NewScore);
+	}
+}
+
+void UGameEventLibrary::NotifyQuizResultsBroadcast(const UObject* WorldContextObject,
+	const TArray<EQuizAnswer>& Results)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnQuizResultsBroadcast.Broadcast(Results);
+	}
+}
+
+void UGameEventLibrary::NotifyGameResultBroadcast(const UObject* WorldContextObject, const TArray<FPlayerData>& Results)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnLeaderboardBroadcast.Broadcast(Results);
+	}
+}
+
+void UGameEventLibrary::NotifyGameEnded(const UObject* WorldContextObject, const int32 WinnerId)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnGameEnded.Broadcast(WinnerId);
+	}
+}
+
 void UGameEventLibrary::NotifyWarmUpMessage(const UObject* WorldContextObject, const int32 PlayerId, const FText WarmUpText)
 {
 	if (!WorldContextObject) return;
@@ -67,5 +120,32 @@ void UGameEventLibrary::NotifyAnnouncementMessage(const UObject* WorldContextObj
 	if (GetEventManagerSubsystem(WorldContextObject))
 	{
 		GetEventManagerSubsystem(WorldContextObject)->OnAnnouncementMessage.Broadcast(AnnouncementText);
+	}
+}
+
+void UGameEventLibrary::NotifyCountDownTimer(const UObject* WorldContextObject, const FText& NewTime)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnCountDownTimeChanged.Broadcast(NewTime);
+	}
+}
+
+void UGameEventLibrary::NotifyAdventureTimer(const UObject* WorldContextObject, const FText& NewTime)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnAdventureTimeChanged.Broadcast(NewTime);
+	}
+}
+
+void UGameEventLibrary::NotifyQuizTimer(const UObject* WorldContextObject, const FText& NewTime)
+{
+	if (!WorldContextObject) return;
+	if (GetEventManagerSubsystem(WorldContextObject))
+	{
+		GetEventManagerSubsystem(WorldContextObject)->OnQuizTimeChanged.Broadcast(NewTime);
 	}
 }

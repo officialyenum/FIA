@@ -24,10 +24,11 @@ struct FPlayerData
 public:
 	FPlayerData()
 		: PlayerName(FName("Player 1"))
-		  , Score(0)
-		  , ChestOpened(0)
-		  , QuizAnswered(0)
-		  , QuizMissed(0)
+			,PlayerIndex(0)
+			, Score(0)
+			, ChestOpened(0)
+			, QuizAnswered(0)
+			, QuizMissed(0)
 	{
 	}
 
@@ -35,6 +36,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	FName PlayerName;
 
+	// Player Index
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
+	int32 PlayerIndex;
+	
 	// Player Score
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	int32 Score;
@@ -67,10 +72,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Data")
 	FName ID;
 	
-	// Player One
-	FPlayerData PlayerOne;
-	// Player Two
-	FPlayerData PlayerTwo;
+	TArray<FPlayerData> PerPlayerSplitscreenData;
 };
 /**
  * 
@@ -81,16 +83,20 @@ class FIA_API UGameDataDefinition : public UDataAsset
 	GENERATED_BODY()
 	
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tutorial")
+	int32 TotalPlayers;
+	
 	FGameData& GetGameData() { return GameData; }
 	
 	UFUNCTION(BlueprintCallable)
-	void Reset();
+	void Initialize();
+	
 	UFUNCTION(BlueprintCallable)
 	void SetGameSessionID(const FName GameID);
 	UFUNCTION(BlueprintCallable)
 	void SetPlayerName(const int32 PlayerIndex, const FName PlayerName);
 	UFUNCTION(BlueprintCallable)
-	void AddPlayerScore(const int32 PlayerIndex, const int32 Score);
+	void AddPlayerScore(const int32 PlayerIndex, const int32 Score, const bool bOpenedChest);
 	UFUNCTION(BlueprintCallable)
 	void AddChestOpened(const int32 PlayerIndex, const int32 Score);
 	UFUNCTION(BlueprintCallable)
@@ -105,6 +111,10 @@ public:
 	int32 GetQuizAnswered(const int32 PlayerIndex);
 	UFUNCTION(BlueprintCallable)
 	int32 GetQuizMissed(const int32 PlayerIndex);
+	UFUNCTION(BlueprintCallable)
+	FPlayerData HandleBestScore(int32 InTotalPlayers);
+	UFUNCTION(BlueprintCallable)
+	TArray<FPlayerData> GetAllPlayerScores(int32 InTotalPlayers);
 private:
 	FGameData GameData;
 };

@@ -6,19 +6,17 @@
 #include "TimeManagerComponent.h"
 #include "Components/ActorComponent.h"
 #include "Data/GameDataDefinition.h"
+#include "Data/QuizDataDefinition.h"
 #include "GameRuleComponent.generated.h"
 
 
+struct FQuizData;
+class UQuizDataDefinition;
 enum class EQuizAnswer : uint8;
 enum class ETimerType : uint8;
 class UTimeManagerComponent;
 struct FQuizAnswerResult;
 enum class EGameFlowState : uint8;
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameStateChanged, EGameFlowState, NewState);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnScoreChanged, int32, Player, int32, NewScore);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnQuizResultsBroadcast, const TArray<EQuizAnswer>&, Results);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnGameEnded, int32, Winner);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class FIA_API UGameRuleComponent : public UActorComponent
@@ -46,26 +44,24 @@ public:
 	int32 WinScore = 20;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Rules")
-	EGameFlowState CurrentState = EGameFlowState::Adventure;
+	EGameFlowState CurrentState = EGameFlowState::CharacterSelect;
 	virtual void BeginPlay() override;
-	
-	UPROPERTY(BlueprintAssignable) FOnGameStateChanged OnGameStateChanged;
-	UPROPERTY(BlueprintAssignable) FOnScoreChanged OnScoreChanged;
-	UPROPERTY(BlueprintAssignable) FOnQuizResultsBroadcast OnQuizResultsBroadcast;
-	UPROPERTY(BlueprintAssignable) FOnGameEnded OnGameEnded;
 
 	// --- Flow control, call these from GameSetupComponent / gameplay events ---
 	UFUNCTION(BlueprintCallable, Category = "Rules")
 	void StartCountdown();
 
 	UFUNCTION(BlueprintCallable, Category = "Rules")
-	void OnChestFound(int32 FinderPlayerIndex);
+	void OnChestFound(const int32 FinderPlayerIndex);
 
 	UFUNCTION(BlueprintCallable, Category = "Rules")
-	void SubmitQuizAnswer(int32 PlayerIndex, const EQuizAnswer Answer);
+	void SubmitQuizAnswer(const int32 PlayerIndex, const EQuizAnswer Answer);
 
 	UFUNCTION(BlueprintCallable, Category = "Rules")
-	void AddGameScore(int32 PlayerIndex, int32 Points);
+	void AddGameScore(const int32 PlayerIndex, const int32 Points);
+	
+	UFUNCTION(BlueprintCallable, Category = "Rules")
+	void ResetChestTracker();
 
 	UFUNCTION(BlueprintCallable, Category = "Rules")
 	void RestartGame() const;
@@ -87,9 +83,16 @@ private:
 
 	bool bInitialized = false;
 	UPROPERTY() TArray<int32> Players;
-	TMap<int32, int32> PlayerScores;
 	TSet<int32> AnsweredThisQuiz;
+	TArray<bool> OpenedChestTracker;
 	TMap<int32, EQuizAnswer> PendingAnswers;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Game|Data", meta = (AllowPrivateAccess, true))
+	UGameDataDefinition* GameDataDefinition;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Game|Data", meta = (AllowPrivateAccess, true))
+	UQuizDataDefinition* QuizDataDefinition;
+	
+	FQuizData ActiveQuiz;
 
 	void SetState(EGameFlowState NewState);
 	void EnterAdventure();
@@ -99,4 +102,8 @@ private:
 	UFUNCTION() void HandleCountdownExpired(ETimerType InTimerType = ETimerType::Countdown);
 	UFUNCTION() void HandleAdventureExpired(ETimerType InTimerType = ETimerType::Adventure);
 	UFUNCTION() void HandleQuizExpired(ETimerType InTimerType = ETimerType::Quiz);
+	
+public:
+	FORCEINLINE UGameDataDefinition* GetGameDataDefinition() const { return GameDataDefinition; }
+	FORCEINLINE UQuizDataDefinition* GetQuizDataDefinition() const { return QuizDataDefinition; }
 };

@@ -43,9 +43,4 @@ public:
 
 	UFUNCTION()
 	void HandleAllPlayersReady();
-	UFUNCTION(BlueprintCallable, Category = "Game|Data")
-	void AddGameScore(const int32 PlayerIndex, const int32 Points) const;
-	
-	// UFUNCTION(BlueprintCallable, Category = "Game|Data")
-	// FORCEINLINE UGameDataDefinition* GetGameDataDefinition() const { return GameDataDefinition; }
 };
