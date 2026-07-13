@@ -13,39 +13,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Private/Library/GameManagerLibrary.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Private/UI/FiaUserWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Public/Library/GameManagerLibrary.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/FIA/Public/UI/FiaUserWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/RetargetedCharacters/CBP_Zaza.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/RetargetedCharacters/CBP_Zaza.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Data/DataAssets/DA_GameDataDefinition.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/DataAssets/DA_GameDataDefinition.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Data/DataAssets/DA_QuizDataDefinition.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/DataAssets/DA_QuizDataDefinition.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Data/DataAssets/QuizDataDefinition.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_Quiz.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_Quiz.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_ScoreWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_ScoreWidget.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/FIA.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/FIA.Build.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/FIA.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/FIA.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/GameRuleComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/GameRuleComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/GameSetupComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/GameSetupComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Data/QuizDataDefinition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Data/QuizDataDefinition.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Library/GameEventLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Library/GameEventLibrary.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Components/GameRuleComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Components/GameRuleComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Components/GameSetupComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Components/GameSetupComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Components/TimeManagerComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Components/TimeManagerComponent.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Data/QuizDataDefinition.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Data/QuizDataDefinition.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Library/GameEventLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Library/GameEventLibrary.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/System/EventManagerSubsystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/System/EventManagerSubsystem.h" afterDir="false" />
-    </list>
+    <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -276,7 +244,7 @@
       <workItem from="1783800269241" duration="9707000" />
       <workItem from="1783836524127" duration="4546000" />
       <workItem from="1783841220617" duration="9284000" />
-      <workItem from="1783887653415" duration="17004000" />
+      <workItem from="1783887653415" duration="17064000" />
     </task>
     <servers />
   </component>
