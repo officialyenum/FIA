@@ -22,6 +22,7 @@ public:
 	AFiaGameMode();
 	
 	virtual void PostLogin(APlayerController* NewPlayer) override;
+	virtual UClass* GetDefaultPawnClassForController_Implementation(AController* InController) override;
 protected:
 	virtual void BeginPlay() override;
 	

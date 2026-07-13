@@ -35,7 +35,7 @@ public:
 	// Player Name
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	FName PlayerName;
-
+	
 	// Player Index
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	int32 PlayerIndex;
@@ -43,12 +43,15 @@ public:
 	// Player Score
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	int32 Score;
+	
 	// Player Chest Opened
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	int32 ChestOpened;
+	
 	// Player Quiz Answered
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	int32 QuizAnswered;
+	
 	// Player Quiz Missed
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Data")
 	int32 QuizMissed;
@@ -83,7 +86,12 @@ class FIA_API UGameDataDefinition : public UDataAsset
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tutorial")
+	
+	// Player Class
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game|Character")
+	TArray<TSubclassOf<APawn>> CharacterClasses;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game|Character")
 	int32 TotalPlayers;
 	
 	FGameData& GetGameData() { return GameData; }
@@ -103,6 +111,8 @@ public:
 	void AddQuizAnswered(const int32 PlayerIndex, const int32 Score);
 	UFUNCTION(BlueprintCallable)
 	void AddQuizMissed(const int32 PlayerIndex, const int32 Score);
+	UFUNCTION(BlueprintCallable)
+	TSubclassOf<APawn> GetPlayerClass(const int32 PlayerIndex);
 	UFUNCTION(BlueprintCallable)
 	int32 GetPlayerScore(const int32 PlayerIndex);
 	UFUNCTION(BlueprintCallable)

@@ -36,6 +36,9 @@ UTimeManagerComponent* InQuizTimer)
 	QuizTimer = InQuizTimer;
 
 	check(CountdownTimer && AdventureTimer && QuizTimer);
+	CountdownTimer->SetTimerType(ETimerType::Countdown);
+	AdventureTimer->SetTimerType(ETimerType::Adventure);
+	QuizTimer->SetTimerType(ETimerType::Quiz);
 
 	CountdownTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleCountdownExpired);
 	AdventureTimer->OnTimeExpired.AddDynamic(this, &UGameRuleComponent::HandleAdventureExpired);

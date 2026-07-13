@@ -13,7 +13,24 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="" />
+    <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Assets/Kenney/M_Glow.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Assets/Kenney/M_Glow.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Data/DataAssets/DA_GameDataDefinition.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/DataAssets/DA_GameDataDefinition.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/LVL_GameMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/LVL_GameMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/LVL_TimerGym.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/LVL_TimerGym.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetBlueprints/WBP_GameMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WidgetBlueprints/WBP_GameMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_ScoreWidget.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_ScoreWidget.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/GameRuleComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/GameRuleComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Components/GameRuleComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Components/GameRuleComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +43,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="cidr-memory-view://8" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://4" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Editor/Kismet/Public/FindInBlueprintManager.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Editor/Kismet/Public/ReviewComments.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Editor/UnrealEd/Classes/Builders/EditorBrushBuilder.h" root0="FORCE_HIGHLIGHTING" />
@@ -40,6 +57,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/Math/UnrealMathUtility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/Templates/UnrealTypeTraits.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/UObject/ScriptDelegates.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Classes/GameFramework/Controller.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Classes/GameFramework/GameModeBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Private/GameInstance.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -74,57 +92,57 @@
       <entry key="MS500" value="1.0" />
       <entry key="S2" value="1.0" />
       <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000000411655" />
-      <entry key="S30" value="1.0007332439285093" />
-      <entry key="S60" value="1.0538175088828743" />
-      <entry key="M2" value="1.5277357853341567" />
-      <entry key="M5" value="4.362886130778189" />
-      <entry key="M10" value="13.254068028208888" />
-      <entry key="M15" value="23.678364934451487" />
-      <entry key="M30" value="52.7124987134835" />
-      <entry key="H1" value="92.56202838127759" />
-      <entry key="H2" value="136.16335809127423" />
-      <entry key="H4" value="219.32569107442583" />
-      <entry key="D1" value="949.20499458442" />
-      <entry key="W1" value="1452.352778818887" />
+      <entry key="S10" value="1.000000000003692" />
+      <entry key="S30" value="1.0004448499393679" />
+      <entry key="S60" value="1.0696191120875154" />
+      <entry key="M2" value="2.1396669455777175" />
+      <entry key="M5" value="8.105458330072072" />
+      <entry key="M10" value="14.649078462964933" />
+      <entry key="M15" value="18.979994439629596" />
+      <entry key="M30" value="33.73485925556575" />
+      <entry key="H1" value="70.31458857975306" />
+      <entry key="H2" value="127.88962956972908" />
+      <entry key="H4" value="222.4431233917204" />
+      <entry key="D1" value="968.859064030268" />
+      <entry key="W1" value="1505.033396989035" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.1864179298205303E-214" />
-      <entry key="S2" value="3.300345640812372E-54" />
-      <entry key="S5" value="4.0497085654282014E-22" />
-      <entry key="S10" value="2.0124662589610173E-11" />
-      <entry key="S30" value="2.8819000087249426E-4" />
-      <entry key="S60" value="0.02330732934412438" />
-      <entry key="M2" value="0.27380838523515627" />
-      <entry key="M5" value="1.7139006058516242" />
-      <entry key="M10" value="4.535333963056015" />
-      <entry key="M15" value="7.021807248105439" />
-      <entry key="M30" value="12.543376311334733" />
-      <entry key="H1" value="19.434737619556255" />
-      <entry key="H2" value="27.842121465879963" />
-      <entry key="H4" value="49.67150537320697" />
-      <entry key="D1" value="248.06871553025704" />
-      <entry key="W1" value="378.090169420484" />
+      <entry key="MS100" value="6.740284506877198E-100" />
+      <entry key="MS500" value="1.464656035939164E-20" />
+      <entry key="S2" value="1.1001044246370114E-5" />
+      <entry key="S5" value="0.010388995653454988" />
+      <entry key="S10" value="0.10192642274441914" />
+      <entry key="S30" value="0.46716597060711235" />
+      <entry key="S60" value="0.6909065534045343" />
+      <entry key="M2" value="0.9736317040060118" />
+      <entry key="M5" value="2.2750206085196116" />
+      <entry key="M10" value="4.118988327133446" />
+      <entry key="M15" value="5.715930889116558" />
+      <entry key="M30" value="11.344165069761297" />
+      <entry key="H1" value="22.248125018875157" />
+      <entry key="H2" value="36.90431591128214" />
+      <entry key="H4" value="61.997329030417475" />
+      <entry key="D1" value="264.6290987738079" />
+      <entry key="W1" value="403.6098316988297" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.02915826612042E-99" />
-      <entry key="MS500" value="1.8258419636039935E-20" />
-      <entry key="S2" value="1.1624272869249225E-5" />
-      <entry key="S5" value="0.010620533139896401" />
-      <entry key="S10" value="0.10305597096225996" />
-      <entry key="S30" value="0.4698149537333439" />
-      <entry key="S60" value="0.7599861849317623" />
-      <entry key="M2" value="1.6187810141020942" />
-      <entry key="M5" value="5.978264631985915" />
-      <entry key="M10" value="17.714735539780264" />
-      <entry key="M15" value="30.634296205671358" />
-      <entry key="M30" value="65.20478465237996" />
-      <entry key="H1" value="111.96048365143253" />
-      <entry key="H2" value="163.98119362893226" />
-      <entry key="H4" value="268.97724222035464" />
-      <entry key="D1" value="1197.257167226955" />
-      <entry key="W1" value="1830.4392438571726" />
+      <entry key="MS100" value="2.3533333744351984E-18" />
+      <entry key="MS500" value="2.980826446946128E-4" />
+      <entry key="S2" value="0.13139733939803533" />
+      <entry key="S5" value="0.4475538476232662" />
+      <entry key="S10" value="0.7255499496974079" />
+      <entry key="S30" value="1.26360576749417" />
+      <entry key="S60" value="1.6340805680307386" />
+      <entry key="M2" value="3.0299702474935657" />
+      <entry key="M5" value="10.314700559798725" />
+      <entry key="M10" value="18.714683230146576" />
+      <entry key="M15" value="24.647125414864515" />
+      <entry key="M30" value="45.027859963265506" />
+      <entry key="H1" value="92.51173431433743" />
+      <entry key="H2" value="164.75311505027403" />
+      <entry key="H4" value="284.40935406894766" />
+      <entry key="D1" value="1233.469275503414" />
+      <entry key="W1" value="1908.6390991562175" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -245,6 +263,7 @@
       <workItem from="1783836524127" duration="4546000" />
       <workItem from="1783841220617" duration="9284000" />
       <workItem from="1783887653415" duration="17064000" />
+      <workItem from="1783979228025" duration="5039000" />
     </task>
     <servers />
   </component>

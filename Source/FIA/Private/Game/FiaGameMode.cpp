@@ -35,18 +35,32 @@ void AFiaGameMode::BeginPlay()
 	Players.Add(0);
 	GameSetup->RegisterDefaultPlayer(0);
 	// register the rest
-	for (int i = 1; i < GameSetup->GetMaxPlayers(); ++i)
+	for (int i = 0; i < GameSetup->GetMaxPlayers(); ++i)
 	{
 		Players.Add(i);
 		GameSetup->TryJoinLocalPlayer(i);
 	}
-	GameRule->InitializePlayers(Players);
 }
 
 void AFiaGameMode::PostLogin(APlayerController* NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
 	FIA_LOG_F("Logged In as %s", *NewPlayer->GetName());
+}
+
+UClass* AFiaGameMode::GetDefaultPawnClassForController_Implementation(AController* InController)
+{
+    if (const APlayerController* PC = Cast<APlayerController>(InController))
+    {
+    	if (const ULocalPlayer* LP = PC->GetLocalPlayer())
+    	{
+		    if (GameRule->GetGameDataDefinition())
+		    {
+				return GameRule->GetGameDataDefinition()->GetPlayerClass(LP->GetControllerId());
+		    }
+    	}
+    }
+	return Super::GetDefaultPawnClassForController_Implementation(InController);
 }
 
 void AFiaGameMode::HandleAllPlayersReady()

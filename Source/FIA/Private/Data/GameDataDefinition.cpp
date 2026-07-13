@@ -50,6 +50,11 @@ void UGameDataDefinition::AddQuizMissed(const int32 PlayerIndex, const int32 Sco
 	GetGameData().PerPlayerSplitscreenData[PlayerIndex].AddQuizMissed(Score);
 }
 
+TSubclassOf<APawn> UGameDataDefinition::GetPlayerClass(const int32 PlayerIndex)
+{
+	return CharacterClasses[PlayerIndex];
+}
+
 int32 UGameDataDefinition::GetPlayerScore(const int32 PlayerIndex)
 {
 	return GetGameData().PerPlayerSplitscreenData[PlayerIndex].Score;

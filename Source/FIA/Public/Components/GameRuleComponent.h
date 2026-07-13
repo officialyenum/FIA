@@ -43,8 +43,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Rules")
 	int32 WinScore = 20;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Rules")
-	EGameFlowState CurrentState = EGameFlowState::CharacterSelect;
+	UPROPERTY(EditAnywhere, Category = "Rules")
+	EGameFlowState CurrentState = EGameFlowState::Countdown;
+	
 	virtual void BeginPlay() override;
 
 	// --- Flow control, call these from GameSetupComponent / gameplay events ---
