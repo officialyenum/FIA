@@ -6,6 +6,7 @@
 #include "Components/TimeManagerComponent.h"
 #include "Data/QuizDataDefinition.h"
 #include "FIA/FIA.h"
+#include "Game/FiaGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Library/GameEventLibrary.h"
 
@@ -30,6 +31,7 @@ UTimeManagerComponent* InQuizTimer)
 		FIA_ERROR("Ensure Quiz Data Definition is set in Game Mode -> Game Rule Component");
 		return;
 	}
+	GetQuizDataDefinition()->InitializeQuizData();
 
 	CountdownTimer = InCountdownTimer;
 	AdventureTimer = InAdventureTimer;
@@ -51,6 +53,8 @@ UTimeManagerComponent* InQuizTimer)
 void UGameRuleComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	AnsweredThisQuiz.Empty();
+	ResetChestTracker();
 }
 
 void UGameRuleComponent::StartCountdown()
@@ -66,13 +70,16 @@ void UGameRuleComponent::OnChestFound(const int32 FinderPlayerIndex)
 	AdventureTimer->PauseTimer(); // freeze the 2-minute clock during the quiz
 	AnsweredThisQuiz.Empty();
 	ResetChestTracker();
-	PendingAnswers.Empty();
 
 	OpenedChestTracker[FinderPlayerIndex] = true;
 	QuizDataDefinition->GetRandomQuiz(ActiveQuiz);
 	SetState(EGameFlowState::Quiz);
+	Cast<AFiaGameMode>(GetOwner())->OpenQuizWidget_BP(ActiveQuiz);
 	UGameEventLibrary::NotifyQuizLoaded(GetOwner(), ActiveQuiz);
 	QuizTimer->StartCountdown(QuizDuration, 1.0f);
+	
+	GetGameDataDefinition()->AddChestOpened(FinderPlayerIndex, 1);
+	UGameEventLibrary::NotifyPlayerChestOpened(GetOwner(), GetGameDataDefinition()->GetChestOpened(FinderPlayerIndex));
 }
 
 void UGameRuleComponent::SubmitQuizAnswer(const int32 PlayerIndex, const EQuizAnswer Answer)
@@ -81,7 +88,7 @@ void UGameRuleComponent::SubmitQuizAnswer(const int32 PlayerIndex, const EQuizAn
 	if (AnsweredThisQuiz.Contains(PlayerIndex)) return;
 
 	AnsweredThisQuiz.Add(PlayerIndex);
-	PendingAnswers.Add(PlayerIndex, Answer);
+	PendingAnswers[PlayerIndex] = Answer;
 
 	if (AnsweredThisQuiz.Num() >= Players.Num())
 	{
@@ -104,9 +111,12 @@ void UGameRuleComponent::AddGameScore(const int32 PlayerIndex, const int32 Point
 
 void UGameRuleComponent::ResetChestTracker()
 {
+	OpenedChestTracker.Empty();
+	PendingAnswers.Empty();
 	for (const int32 PlayerIndex : Players)
 	{
-		OpenedChestTracker[PlayerIndex] = false;
+		OpenedChestTracker.Add(false);
+		PendingAnswers.Add(EQuizAnswer::None);
 	}
 }
 
@@ -140,6 +150,7 @@ void UGameRuleComponent::InitializePlayers(const TArray<int32>& InPlayers)
 		GameDataDefinition->SetPlayerName(PlayerIndex, FName("Player %i", PlayerIndex + 1));
 		GameDataDefinition->AddPlayerScore(PlayerIndex, 0, false);
 		GameDataDefinition->AddChestOpened(PlayerIndex, 0);
+		GameDataDefinition->AddQuizAnswered(PlayerIndex, 0);
 		GameDataDefinition->AddQuizMissed(PlayerIndex, 0);
 		UGameEventLibrary::NotifyScoreChanged(GetOwner(), PlayerIndex, 0);
 	}
@@ -154,6 +165,8 @@ void UGameRuleComponent::SetState(const EGameFlowState NewState)
 void UGameRuleComponent::EnterAdventure()
 {
 	SetState(EGameFlowState::Adventure);
+	
+	Cast<AFiaGameMode>(GetOwner())->RespawnChest_BP();
 
 	// Enable input for every registered local player
 	for (const int32 PlayerIndex : Players)
@@ -181,25 +194,26 @@ void UGameRuleComponent::FinishQuiz()
 {
 	QuizTimer->StopTimer();
 
-	TArray<EQuizAnswer> Results;
-	Results.Reserve(PendingAnswers.Num());
-	for (const auto& Pair : PendingAnswers)
+	for (int Index = 0; Index < PendingAnswers.Num(); ++Index)
 	{
 		// Quiz Check Logic
-		if (ActiveQuiz.CorrectAnswer == Pair.Value)
+		if (ActiveQuiz.CorrectAnswer == PendingAnswers[Index])
 		{
-			AddGameScore(Pair.Key, 1);
-			UGameEventLibrary::NotifyPlayerAnswered(GetOwner(), Pair.Key);
+			AddGameScore(Index, 1);
+			GameDataDefinition->AddQuizAnswered(Index, 1);
+			UGameEventLibrary::NotifyPlayerAnswered(GetOwner(), Index);
 		}
 		else
 		{
-			AddGameScore(Pair.Key, 0);
-			UGameEventLibrary::NotifyPlayerMissed(GetOwner(), Pair.Key);
+			AddGameScore(Index, 0);
+			GameDataDefinition->AddQuizMissed(Index, 1);
+			UGameEventLibrary::NotifyPlayerMissed(GetOwner(), Index);
 		}
-		Results[Pair.Key] = Pair.Value;
 	}
-	UGameEventLibrary::NotifyQuizResultsBroadcast(GetOwner(), Results);
+	UGameEventLibrary::NotifyQuizResultsBroadcast(GetOwner(), PendingAnswers);
+	Cast<AFiaGameMode>(GetOwner())->HideChestInPool_BP();
 
+	
 	EnterAdventure(); // resumes the paused adventure timer
 }
 
@@ -234,7 +248,7 @@ void UGameRuleComponent::HandleQuizExpired(ETimerType InTimerType)
 	{
 		if (!AnsweredThisQuiz.Contains(PC))
 		{
-			PendingAnswers.Add(PC, EQuizAnswer::None);
+			PendingAnswers[PC] = EQuizAnswer::None;
 			AnsweredThisQuiz.Add(PC);
 		}
 	}

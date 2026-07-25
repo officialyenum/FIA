@@ -27,5 +27,13 @@ EGameFlowState UGameManagerLibrary::GetGameFlowState(const UObject* WorldContext
 	if (const AFiaGameMode* Game = GetFiaGameMode(WorldContextObject))
 		if (const UGameRuleComponent* Rule = Game->GameRule)
 			return Rule->CurrentState;
-	return EGameFlowState::CharacterSelect;;
+	return EGameFlowState::CharacterSelect;
+}
+
+void UGameManagerLibrary::SetGameFlowState(const UObject* WorldContextObject, const EGameFlowState NewFlowState)
+{
+	if (!WorldContextObject) return;
+	if (const AFiaGameMode* Game = GetFiaGameMode(WorldContextObject))
+		if (UGameRuleComponent* GameRule = Game->GameRule)
+			GameRule->SetState(NewFlowState);
 }

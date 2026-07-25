@@ -41,6 +41,25 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UTimeManagerComponent* QuizTimer;
+	
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Components")
+	TSubclassOf<AActor> StartupClass;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Components")
+	TSubclassOf<AActor> RespawnClass;
+	
+	TArray<FVector> StartupPoints;
+	TArray<FVector> RespawnPoints;
+	
+	UFUNCTION(BlueprintImplementableEvent)
+	void HideChestInPool_BP();
+	UFUNCTION(BlueprintImplementableEvent)
+	void RespawnChest_BP();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OpenQuizWidget_BP(FQuizData QuizData);
+	UFUNCTION(BlueprintImplementableEvent)
+	void CloseQuizWidget_BP();
 
 	UFUNCTION()
 	void HandleAllPlayersReady();

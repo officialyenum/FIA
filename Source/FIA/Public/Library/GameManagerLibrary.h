@@ -24,4 +24,6 @@ public:
 	static UGameDataDefinition* GetFiaCurrentGameDataDefinition(const UObject* WorldContextObject);
 	UFUNCTION(Blueprintpure, Category = "FIA Game Library", meta=(WorldContext="WorldContextObject"))
 	static EGameFlowState GetGameFlowState(const UObject* WorldContextObject);
+	UFUNCTION(BlueprintCallable, Category = "FIA Game Library", meta=(WorldContext="WorldContextObject"))
+	static void SetGameFlowState(const UObject* WorldContextObject, const EGameFlowState NewFlowState);
 };

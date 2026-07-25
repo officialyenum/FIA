@@ -24,6 +24,9 @@ void AFiaGameMode::BeginPlay()
 	Super::BeginPlay();
 	if (!GameSetup || !GameRule) return;
 	GameSetup->OnAllPlayersReady.AddDynamic(this, &AFiaGameMode::HandleAllPlayersReady);
+	
+	//Setup respawn points
+	if (!RespawnClass || !StartupClass) FIA_ERROR("Respawn or startup class not set");
 	// All components already exist and have had their own BeginPlay called by this point,
 	// so wiring references here is safe - no ordering ambiguity.
 	GameRule->Initialize(CountdownTimer, AdventureTimer, QuizTimer);
@@ -40,6 +43,7 @@ void AFiaGameMode::BeginPlay()
 		Players.Add(i);
 		GameSetup->TryJoinLocalPlayer(i);
 	}
+	RespawnChest_BP();
 }
 
 void AFiaGameMode::PostLogin(APlayerController* NewPlayer)
@@ -52,11 +56,11 @@ UClass* AFiaGameMode::GetDefaultPawnClassForController_Implementation(AControlle
 {
     if (const APlayerController* PC = Cast<APlayerController>(InController))
     {
-    	if (const ULocalPlayer* LP = PC->GetLocalPlayer())
+    	if (const ULocalPlayer* Lp = PC->GetLocalPlayer())
     	{
 		    if (GameRule->GetGameDataDefinition())
 		    {
-				return GameRule->GetGameDataDefinition()->GetPlayerClass(LP->GetControllerId());
+				return GameRule->GetGameDataDefinition()->GetPlayerClass(Lp->GetControllerId());
 		    }
     	}
     }

@@ -44,7 +44,7 @@ public:
 	int32 WinScore = 20;
 
 	UPROPERTY(EditAnywhere, Category = "Rules")
-	EGameFlowState CurrentState = EGameFlowState::Countdown;
+	EGameFlowState CurrentState = EGameFlowState::CharacterSelect;
 	
 	virtual void BeginPlay() override;
 
@@ -70,6 +70,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Rules")
 	void ReturnToMainMenu(const FString& MainMenuMapName) const;
 
+	UFUNCTION(BlueprintCallable, Category = "Rules")
+	void SetState(EGameFlowState NewState);
 	// Register participating players once character select completes
 	UFUNCTION(BlueprintCallable, Category = "Rules")
 	void InitializePlayers(const TArray<int32>& InPlayers);
@@ -86,7 +88,7 @@ private:
 	UPROPERTY() TArray<int32> Players;
 	TSet<int32> AnsweredThisQuiz;
 	TArray<bool> OpenedChestTracker;
-	TMap<int32, EQuizAnswer> PendingAnswers;
+	TArray<EQuizAnswer> PendingAnswers;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Game|Data", meta = (AllowPrivateAccess, true))
 	UGameDataDefinition* GameDataDefinition;
@@ -95,7 +97,6 @@ private:
 	
 	FQuizData ActiveQuiz;
 
-	void SetState(EGameFlowState NewState);
 	void EnterAdventure();
 	void FinishQuiz();
 	void EndGame(int32 Winner);
