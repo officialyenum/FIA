@@ -52,6 +52,7 @@ struct FQuizPlayerResult
 {
 	GENERATED_BODY()
 	
+	bool bOpenedChest = false;
 	bool bAnswered = false;
 	bool bCorrect = false;
 	EQuizAnswer Answer = EQuizAnswer::None;
