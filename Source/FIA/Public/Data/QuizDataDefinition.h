@@ -7,13 +7,54 @@
 #include "QuizDataDefinition.generated.h"
 
 UENUM(BlueprintType)
+enum class EFiaGameMode : uint8
+{
+	Menu UMETA(DisplayName = "Menu"),
+	Adventure UMETA(DisplayName = "Adventure"),
+	Quiz UMETA(DisplayName = "Quiz")
+};
+
+UENUM(BlueprintType)
 enum class EQuizAnswer : uint8
 {
-	None,
-	OptionA,
-	OptionB,
-	OptionX,
-	OptionY
+	None UMETA(DisplayName = "None"),
+
+	A UMETA(DisplayName = "A"),
+	B UMETA(DisplayName = "B"),
+	X UMETA(DisplayName = "X"),
+	Y UMETA(DisplayName = "Y")
+};
+
+
+USTRUCT(BlueprintType)
+struct FQuizScoreData
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 Score = 0;
+	UPROPERTY(BlueprintReadOnly)
+	int32 ChestOpened = 0;
+	UPROPERTY(BlueprintReadOnly)
+	int32 QuizAnswered = 0;
+	UPROPERTY(BlueprintReadOnly)
+	int32 QuizMissed = 0;
+
+
+	void AddScore(const int32 ScoreToAdd) { Score += ScoreToAdd; }
+	void RecordChestOpened() { ++ChestOpened; }
+	void RecordQuizAnswered() { ++QuizAnswered; }
+	void RecordQuizMissed() { ++QuizMissed; }
+};
+
+USTRUCT()
+struct FQuizPlayerResult
+{
+	GENERATED_BODY()
+	
+	bool bAnswered = false;
+	bool bCorrect = false;
+	EQuizAnswer Answer = EQuizAnswer::None;
 };
 
 USTRUCT(BlueprintType)
