@@ -13,12 +13,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_FiaGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Game/BP_FiaGameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/LVL_TimerGym.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/LVL_TimerGym.umap" afterDir="false" />
-    </list>
+    <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -246,7 +241,7 @@
       <workItem from="1784376109402" duration="3902000" />
       <workItem from="1788692900865" duration="7774000" />
       <workItem from="1788725264871" duration="7081000" />
-      <workItem from="1788781196275" duration="1350000" />
+      <workItem from="1788781196275" duration="1947000" />
     </task>
     <servers />
   </component>
