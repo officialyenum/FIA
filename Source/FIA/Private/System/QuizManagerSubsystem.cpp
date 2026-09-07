@@ -23,7 +23,7 @@ void UQuizManagerSubsystem::Deinitialize()
 }
 
 bool UQuizManagerSubsystem::StartQuiz(AActor* Chest, AFiaPlayerState* InChestFoundBy, const int32 QuestionID,
-	const FQuizData QuizData, const float Duration)
+	const FQuizData& QuizData, const float Duration)
 {
 	if (!IsServer()) return false;
 	if (!Chest) return false;
@@ -43,8 +43,6 @@ bool UQuizManagerSubsystem::StartQuiz(AActor* Chest, AFiaPlayerState* InChestFou
 	// participating in this quiz
 	BuildPlayerList();
 	
-	
-
 	// Start replicated quiz state
 	FiaGameState->StartQuiz(
 		QuestionID,

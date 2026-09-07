@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "FiaGameMode.h"
+#include "Data/QuizDataDefinition.h"
 #include "GameFramework/GameStateBase.h"
 #include "FiaGameState.generated.h"
 
+enum class EFiaGameMode : uint8;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(
 	FOnFiaGameModeChanged,
 	EFiaGameMode,
@@ -61,7 +63,7 @@ public:
 	
 	void SetQuizMode(EFiaGameMode NewMode);
 	void StartQuiz(int32 QuestionID, float QuizDuration);
-	void FinishQuiz(bool bTimedOut);
+	void FinishQuiz(const bool bTimedOut);
 
 private:
 	bool bLastFinishTimedOut = false;

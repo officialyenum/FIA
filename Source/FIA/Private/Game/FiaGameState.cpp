@@ -1,5 +1,6 @@
 ﻿#include "Game/FiaGameState.h"
 
+#include "Data/QuizDataDefinition.h"
 #include "Net/UnrealNetwork.h"
 
 AFiaGameState::AFiaGameState()
@@ -60,7 +61,7 @@ void AFiaGameState::StartQuiz(int32 QuestionID, float QuizDuration)
 	SetQuizMode(EFiaGameMode::Quiz);
 }
 
-void AFiaGameState::FinishQuiz(bool bTimedOut)
+void AFiaGameState::FinishQuiz(const bool bTimedOut)
 {
 	if (!HasAuthority())
 	{

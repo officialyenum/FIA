@@ -84,47 +84,4 @@ UCLASS()
 class FIA_API UGameDataDefinition : public UDataAsset
 {
 	GENERATED_BODY()
-	
-public:
-	
-	// Player Class
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game|Character")
-	TArray<TSubclassOf<APawn>> CharacterClasses;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game|Character")
-	int32 TotalPlayers;
-	
-	FGameData& GetGameData() { return GameData; }
-	
-	UFUNCTION(BlueprintCallable)
-	void Initialize();
-	
-	UFUNCTION(BlueprintCallable)
-	void SetGameSessionID(const FName GameID);
-	UFUNCTION(BlueprintCallable)
-	void SetPlayerName(const int32 PlayerIndex, const FName PlayerName);
-	UFUNCTION(BlueprintCallable)
-	void AddPlayerScore(const int32 PlayerIndex, const int32 Score, const bool bOpenedChest);
-	UFUNCTION(BlueprintCallable)
-	void AddChestOpened(const int32 PlayerIndex, const int32 Score);
-	UFUNCTION(BlueprintCallable)
-	void AddQuizAnswered(const int32 PlayerIndex, const int32 Score);
-	UFUNCTION(BlueprintCallable)
-	void AddQuizMissed(const int32 PlayerIndex, const int32 Score);
-	UFUNCTION(BlueprintCallable)
-	TSubclassOf<APawn> GetPlayerClass(const int32 PlayerIndex);
-	UFUNCTION(BlueprintCallable)
-	int32 GetPlayerScore(const int32 PlayerIndex);
-	UFUNCTION(BlueprintCallable)
-	int32 GetChestOpened(const int32 PlayerIndex);
-	UFUNCTION(BlueprintCallable)
-	int32 GetQuizAnswered(const int32 PlayerIndex);
-	UFUNCTION(BlueprintCallable)
-	int32 GetQuizMissed(const int32 PlayerIndex);
-	UFUNCTION(BlueprintCallable)
-	FPlayerData HandleBestScore(int32 InTotalPlayers);
-	UFUNCTION(BlueprintCallable)
-	TArray<FPlayerData> GetAllPlayerScores(int32 InTotalPlayers);
-private:
-	FGameData GameData;
 };

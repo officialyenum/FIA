@@ -14,25 +14,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a114bf5-6e43-498c-99d2-39b365460c60" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Game/BP_GameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Game/BP_SharedScreenGameMode.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_Chest.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_Chest.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_RespawnPoint.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Items/BP_RespawnPoint.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Player/BP_PlayerController.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Player/BP_PlayerController.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Data/DataAssets/DA_WidgetDataDefinition.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Data/DataAssets/DA_WidgetDataDefinition.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/LVL_BasicGym.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/LVL_BasicGym.umap" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/FIA/Private/Library/QuizManagerLibrary.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/FIA/Public/Library/QuizManagerLibrary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FIA.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/CBP_SandboxCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/LVL_TimerGym.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/LVL_TimerGym.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/HUD/GameHudManager.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/HUD/GameHudManager.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/HUD/MainMenuHudManager.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetBlueprints/WBP_GameMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WidgetBlueprints/WBP_GameMenu.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_Interact.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_Quiz.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_QuizHUD.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetComponents/WBP_ScoreWidget.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FIA.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/FIA.uproject.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/UI/WidgetBlueprints/WBP_MainMenu.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/UI/WidgetBlueprints/WBP_MainMenu.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/GameRuleComponent.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/GameSetupComponent.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Components/TimeManagerComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameState.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameState.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Library/GameEventLibrary.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/Library/GameEventLibrary.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/Library/GameManagerLibrary.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/FIA/Private/System/QuizManagerSubsystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/System/QuizManagerSubsystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Data/QuizDataDefinition.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Data/QuizDataDefinition.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Private/UI/FiaUserWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Private/UI/FiaUserWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Components/GameRuleComponent.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Components/GameSetupComponent.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameState.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Library/GameEventLibrary.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/Library/GameEventLibrary.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/Library/GameManagerLibrary.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/System/EventManagerSubsystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/System/EventManagerSubsystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/FIA/Public/System/QuizManagerSubsystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/System/QuizManagerSubsystem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FIA/Public/UI/FiaUserWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FIA/Public/UI/FiaUserWidget.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,27 +53,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Components/GameRuleComponent.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Components/GameSetupComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="cidr-memory-view://0" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Data/GameDataDefinition.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Data/QuizDataDefinition.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameMode.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Game/FiaGameState.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Library/GameEventLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Library/GameManagerLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Player/FiaPlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/Player/FiaPlayerState.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/System/EventManagerSubsystem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/System/QuizManagerSubsystem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Private/UI/FiaUserWidget.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Components/GameRuleComponent.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Components/GameSetupComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Data/GameDataDefinition.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Data/QuizDataDefinition.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameMode.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Game/FiaGameState.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Library/GameEventLibrary.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Library/GameManagerLibrary.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Player/FiaPlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/Player/FiaPlayerState.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/FIA/Public/System/EventManagerSubsystem.h" root0="FORCE_HIGHLIGHTING" />
@@ -77,63 +79,64 @@
     <commands />
     <urls />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="6.922722464038197E-37" />
-      <entry key="MS500" value="5.8644000571981304E-8" />
-      <entry key="S2" value="0.018014892731736558" />
-      <entry key="S5" value="0.33434532052760696" />
-      <entry key="S10" value="1.1557775247280544" />
-      <entry key="S30" value="3.94775669700827" />
-      <entry key="S60" value="6.922153155968657" />
-      <entry key="M2" value="10.411027576956302" />
-      <entry key="M5" value="15.876093786718815" />
-      <entry key="M10" value="26.15854247735027" />
-      <entry key="M15" value="37.2829070979985" />
-      <entry key="M30" value="64.55906755935956" />
-      <entry key="H1" value="98.67294323755803" />
-      <entry key="H2" value="138.653107232176" />
-      <entry key="H4" value="205.68294059814136" />
-      <entry key="D1" value="949.2061000496531" />
-      <entry key="W1" value="1729.9363434173579" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0002002375271477" />
+      <entry key="S2" value="1.1189582148349704" />
+      <entry key="S5" value="1.4345789664582413" />
+      <entry key="S10" value="1.7841677116932007" />
+      <entry key="S30" value="3.1657020076327766" />
+      <entry key="S60" value="4.764584755607547" />
+      <entry key="M2" value="6.350630963774391" />
+      <entry key="M5" value="7.771105553221188" />
+      <entry key="M10" value="8.35464292786063" />
+      <entry key="M15" value="8.598629127173778" />
+      <entry key="M30" value="9.628524327019441" />
+      <entry key="H1" value="13.000915775738525" />
+      <entry key="H2" value="18.864232905339378" />
+      <entry key="H4" value="38.66610702192925" />
+      <entry key="D1" value="649.4289107131963" />
+      <entry key="W1" value="1657.2716370762132" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0000000000002136" />
-      <entry key="MS500" value="1.0029372780277868" />
-      <entry key="S2" value="1.2940516695066666" />
-      <entry key="S5" value="1.953514713066825" />
-      <entry key="S10" value="2.689458041319993" />
-      <entry key="S30" value="4.622908106452315" />
-      <entry key="S60" value="6.754520686019944" />
-      <entry key="M2" value="9.872239425831276" />
-      <entry key="M5" value="16.006034463518024" />
-      <entry key="M10" value="23.421051298551724" />
-      <entry key="M15" value="30.18254888800734" />
-      <entry key="M30" value="46.3138040903306" />
-      <entry key="H1" value="65.98917956755525" />
-      <entry key="H2" value="86.74626348339365" />
-      <entry key="H4" value="112.46600729508113" />
-      <entry key="D1" value="323.18410025963215" />
-      <entry key="W1" value="530.8447966694587" />
+      <entry key="MS100" value="2.2223567648762008E-110" />
+      <entry key="MS500" value="1.1731748817097266E-22" />
+      <entry key="S2" value="3.302163187678924E-6" />
+      <entry key="S5" value="0.007312486819614935" />
+      <entry key="S10" value="0.13391175531986235" />
+      <entry key="S30" value="1.6308448349273286" />
+      <entry key="S60" value="3.495188464591905" />
+      <entry key="M2" value="5.2443790843094344" />
+      <entry key="M5" value="6.743353671802249" />
+      <entry key="M10" value="7.343784196585459" />
+      <entry key="M15" value="7.5828876473750695" />
+      <entry key="M30" value="8.388948374619252" />
+      <entry key="H1" value="10.810313642844758" />
+      <entry key="H2" value="14.897180877661704" />
+      <entry key="H4" value="26.622001219247668" />
+      <entry key="D1" value="235.4082895502207" />
+      <entry key="W1" value="525.3405146596054" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0030436116392988334" />
-      <entry key="MS500" value="0.31419614354218467" />
-      <entry key="S2" value="0.9423395159872462" />
-      <entry key="S5" value="1.9632876266670354" />
-      <entry key="S10" value="3.5082116997204884" />
-      <entry key="S30" value="8.20515319708654" />
-      <entry key="S60" value="13.34845532273912" />
-      <entry key="M2" value="20.027263602278264" />
-      <entry key="M5" value="31.714419819043194" />
-      <entry key="M10" value="49.45352697308162" />
-      <entry key="M15" value="67.35483132371277" />
-      <entry key="M30" value="110.7854677816035" />
-      <entry key="H1" value="164.59867666566043" />
-      <entry key="H2" value="225.35663283808782" />
-      <entry key="H4" value="318.11866113366233" />
-      <entry key="D1" value="1272.3705681557026" />
-      <entry key="W1" value="2260.776210310754" />
+      <entry key="MS100" value="5.477420592293906E-7" />
+      <entry key="MS500" value="0.055970968791525036" />
+      <entry key="S2" value="0.5614853100781594" />
+      <entry key="S5" value="1.116846056379115" />
+      <entry key="S10" value="1.6941330311600413" />
+      <entry key="S30" value="4.58301411250566" />
+      <entry key="S60" value="8.067554935299679" />
+      <entry key="M2" value="11.45782691591567" />
+      <entry key="M5" value="14.445230146130006" />
+      <entry key="M10" value="15.660904656452816" />
+      <entry key="M15" value="16.15572017308221" />
+      <entry key="M30" value="18.00320030074179" />
+      <entry key="H1" value="23.802004118999783" />
+      <entry key="H2" value="33.75500648491882" />
+      <entry key="H4" value="65.28192859020764" />
+      <entry key="D1" value="884.8235115393302" />
+      <entry key="W1" value="2182.6073839505384" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -240,14 +243,6 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration default="true" type="Uproject" factoryName="rider.uproject">
-      <option name="DEFAULT_PROJECT_PATH" value="" />
-      <option name="PROJECT_FILE_PATH" value="" />
-      <option name="AUTO_SELECT_PRIORITY" value="0" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -268,12 +263,14 @@
       <workItem from="1784338121855" duration="13523000" />
       <workItem from="1784376109402" duration="3902000" />
       <workItem from="1788692900865" duration="7774000" />
+      <workItem from="1788725264871" duration="7081000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

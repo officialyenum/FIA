@@ -49,18 +49,7 @@ void UTimeManagerComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		AccumulatedTime = 0.f;
 		const int32 TotalCountdownSeconds = FMath::Max(0, FMath::FloorToInt(TimeRemaining));
 		const FText CountdownTextFormat = TotalCountdownSeconds > 0 ? FText::Format(FText::FromString(TEXT("{0}")),FText::AsNumber(TotalCountdownSeconds)) : FText();
-		switch (TimerType)
-		{
-			case ETimerType::Countdown:
-				UGameEventLibrary::NotifyCountDownTimer(GetOwner(), CountdownTextFormat);
-				break;
-			case ETimerType::Adventure:
-				UGameEventLibrary::NotifyAdventureTimer(GetOwner(), GetTimeTextFormat(TimeRemaining));
-				break;
-			case ETimerType::Quiz:
-				UGameEventLibrary::NotifyQuizTimer(GetOwner(), GetTimeTextFormat(TimeRemaining));
-				break;
-		}
+		UGameEventLibrary::NotifyAnnouncementMessage(GetOwner(), 0, CountdownTextFormat);
 		OnTimeTick.Broadcast(TimerType, TimeRemaining);
 	}
 

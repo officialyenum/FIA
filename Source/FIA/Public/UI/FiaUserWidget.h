@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "FiaUserWidget.generated.h"
 
+class AFiaPlayerState;
+class UQuizManagerSubsystem;
 struct FQuizData;
 enum class EQuizAnswer : uint8;
 class UEventManagerSubsystem;
@@ -24,40 +26,22 @@ public:
 	void UnBindEventManager();
 	
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnPlayerOpenedChest(int32 PlayerIndex);
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnPlayerMissed(int32 PlayerIndex);
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnPlayerAnswered(int32 PlayerIndex);
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnScoreChanged(int32 PlayerIndex, int32 NewScore);
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnWarmUpMessage(const FText& WarmUpText);
-	
-	UFUNCTION(BlueprintImplementableEvent)
 	void OnAnnouncementMessage(const FText& AnnouncementText);
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnQuizResultsBroadcast(const TArray<EQuizAnswer>& Results);
-	
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnQuizLoaded(const FQuizData& Results);
-	
 	// Listen to CountDown Time Changes
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnCountDownTimeChanged(const FText& NewTime);
 	
-	// Listen to Adventure Time Changes
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnAdventureTimeChanged(const FText& NewTime);
+	void OnQuizStarted();
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnQuizFinished(bool bTimedOut);
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnQuizPlayerAnswered( AFiaPlayerState* PlayerState, EQuizAnswer Answer);
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnQuizPlayerScored(AFiaPlayerState* PlayerState, int32 PointsAdded, int32 NewScore);
 	
-	// Listen to Quiz Time Changes
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnQuizTimeChanged(const FText& NewTime);
-private:
+	UPROPERTY(BlueprintReadOnly)
+	UQuizManagerSubsystem* QuizManagerSubsystem;
+	UPROPERTY(BlueprintReadOnly)
 	UEventManagerSubsystem* EventManagerSubsystem;
 };

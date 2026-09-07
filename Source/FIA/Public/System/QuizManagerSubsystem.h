@@ -55,7 +55,7 @@ public:
 	// QUIZ
 	// =============================
 	UFUNCTION(BlueprintCallable, Category = "Quiz")
-	bool StartQuiz(AActor* Chest, AFiaPlayerState* InChestFoundBy, const int32 QuestionID, const FQuizData QuizData, const float Duration);
+	bool StartQuiz(AActor* Chest, AFiaPlayerState* InChestFoundBy, const int32 QuestionID, const FQuizData& QuizData, const float Duration);
 	
 	UFUNCTION(BlueprintCallable,Category = "Quiz")
 	void SubmitAnswer(AFiaPlayerState* PlayerState,EQuizAnswer Answer);
